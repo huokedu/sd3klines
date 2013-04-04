@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Sd3rklines</title>
+    <script type="text/javascript" src="d3/d3.v3.min.js"></script>
+    <script type="text/javascript" src="sd3rklines.js"></script>
+    <style type="text/css">
+      body {
+        font-family: 'Segoe UI', sans-serif;
+      }
+
+      h1, h2, h3, h4 {
+        font-weight: lighter;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Sd3rklines</h1>
+
+    <p>The exchange rate for 2012-04 to 2013-04: <span style="color:
+    red">1</span> <span id="sl1"></span> <span style="color:
+    red;">1.6</span></p>
+
+    <script type="text/javascript">
+      sd3rk.sparkline(
+        '#sl1'
+      , {
+          'minmax' : true
+        , 'firstlast' : true
+        , 'lcl' : -1 // Upper and lower control limits to see
+        , 'ucl' : 1  // translucent band on sparkline. Terminology
+                     // borrowed from process control charts.
+        }
+      , [1, 2, -1, -2, .5, 0, -.5, 2, 1, -2.5, 2.3, 1.6]
+      );
+    </script>
+  </body>
+</html>
+
