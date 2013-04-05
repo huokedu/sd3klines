@@ -4,7 +4,7 @@
   , 'version' : '0.1'
   };
 
-  var dot = function(svgElem, x, y, r, color) {
+  var Dot = function(svgElem, x, y, r, color) {
     if (svgElem[0][0].tagName != 'svg') return;
 
     svgElem.append('circle')
@@ -16,7 +16,7 @@
            .style('fill', color);
   }
 
-  sd3rklines.sparkline = function(elem, props, data) {
+  sd3rklines.Sparkline = function(elem, props, data) {
     // Set defaults for sparkline properties
     if (!('width' in props)) props.width = 50;
     if (!('height' in props)) props.height = 12;
@@ -54,8 +54,8 @@
          .style('fill', 'none');
 
     if (props.firstlast) {
-      dot(chart, xCoord(0), yCoord(data[0]), props.thickness, 'red');
-      dot(
+      Dot(chart, xCoord(0), yCoord(data[0]), props.thickness, 'red');
+      Dot(
         chart
       , xCoord(data.length - 1)
       , yCoord(data[data.length - 1])
@@ -64,14 +64,14 @@
     }
 
     if (props.minmax) {
-      dot(
+      Dot(
         chart
       , xCoord(data.indexOf(d3.min(data)))
       , yCoord(d3.min(data))
       , props.thickness
       , 'blue'
       );
-      dot(
+      Dot(
         chart
       , xCoord(data.indexOf(d3.max(data)))
       , yCoord(d3.max(data))
