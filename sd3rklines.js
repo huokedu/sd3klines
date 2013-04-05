@@ -5,7 +5,7 @@
   };
 
   var dot = function(svgElem, x, y, r, color) {
-    if (svgElem[0][0].nodeName != 'svg') return;
+    if (svgElem[0][0].tagName != 'svg') return;
 
     svgElem.append('circle')
            .attr('cx', x)
@@ -31,7 +31,7 @@
     var chart = d3.select(elem);
     // This will allow us to overlap sparklines inside the same
     // chart
-    if (chart[0][0].nodeName != 'svg') chart = chart.append('svg');
+    if (chart[0][0].tagName != 'svg') chart = chart.append('svg');
     chart = chart.attr('width', props.width + 2 * margin)
                  .attr('height', props.height + 2 * margin);
 
