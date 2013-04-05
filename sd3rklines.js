@@ -12,7 +12,7 @@
            .attr('cy', y)
            .attr('r', r)
            .style('stroke', color)
-           .style('stroke-width', r)
+           .style('stroke-width', 0)
            .style('fill', color);
   }
 
@@ -25,7 +25,7 @@
 
   props - a JSON object of properties. Valid properties:
 
-  - width : float - the intended width of the sparkline. Default 50.
+  - width : float - the intended width of the sparkline. Default 60.
 
   - height : float - the intended height of the sparkline. Default 12.
 
@@ -48,30 +48,29 @@
   */
   sd3rklines.Sparkline = function(elem, props, data) {
     // Set defaults for sparkline properties
-    if (!('width' in props)) props.width = 50;
+    if (!('width' in props)) props.width = 60;
     if (!('height' in props)) props.height = 12;
     if (!('minmax' in props)) props.minmax = false;
     if (!('firstlast' in props)) props.firstlast = false;
     if (!('lcl' in props)) props.lcl = 0;
     if (!('ucl' in props)) props.ucl = 0;
     if (!('thickness' in props)) props.thickness = 1.125;
-    var margin = 2;
     var bandOpacity = .75;
 
     var chart = d3.select(elem);
     // This will allow us to overlap sparklines inside the same
     // chart
     if (chart[0][0].tagName != 'svg') chart = chart.append('svg');
-    chart = chart.attr('width', props.width + 2 * margin)
-                 .attr('height', props.height + 2 * margin);
+    chart = chart.attr('width', props.width)
+                 .attr('height', props.height)
 
     var xCoord = d3.scale.linear()
        .domain([0, data.length - 1])
-       .range([margin, props.width - margin]);
+       .range([props.thickness, props.width - props.thickness]);
 
     var yCoord = d3.scale.linear()
        .domain([d3.min(data), d3.max(data)])
-       .range([props.height + margin, margin]);
+       .range([props.height - props.thickness, props.thickness]);
 
     var lineData = d3.svg.line()
        .x(function(d, i) { return xCoord(i); })
