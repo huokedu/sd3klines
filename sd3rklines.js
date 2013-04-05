@@ -16,6 +16,36 @@
            .style('fill', color);
   }
 
+  /*
+  Sparkline(elem, props, data) - create and get an SVG element
+  containing a sparkline
+
+  elem - any HTML element. If an existing SVG element, the sparkline
+  will be added inside.
+
+  props - a JSON object of properties. Valid properties:
+
+  - width : float - the intended width of the sparkline. Default 50.
+
+  - height : float - the intended height of the sparkline. Default 12.
+
+  - minmax : bool - whether to show the minimum and maximum value
+    markers (dots). Default false.
+
+  - firstlast : bool - whether to show the first and last value markers
+    (dots). Default false.
+
+  - lcl : float - the lower control limit at which to put the bottom of
+    a translucent band overlaid on the sparkline. Terminology borrowed
+    from process control charts. Default 0.
+
+  - ucl : float - the upper control limit. See above. Default 0.
+
+  data : Array (float) - the numbers to plot.
+
+  Returns: an SVG element with one or more sparklines plotted inside.
+  Each sparkline will be inside its own <g> container element.
+  */
   sd3rklines.Sparkline = function(elem, props, data) {
     // Set defaults for sparkline properties
     if (!('width' in props)) props.width = 50;
